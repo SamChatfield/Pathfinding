@@ -34,6 +34,7 @@ public class PathfindingModel extends Observable {
 		for (int i = 0; i < agentNumber; i++) {
 			agents.add(new Agent(null, null, i));
 			Agent a = agents.get(i);
+			a.setStart(map.getNodes().get(i * 2));
 			try {
 				a.setStart(map.nodeAt(i * 2, 0));
 			} catch (InvalidCoordinateException e) {
@@ -203,7 +204,6 @@ public class PathfindingModel extends Observable {
 					notifyObservers();
 				}
 			}
-			
 			// When everything has ended clear the paths
 			for (Agent a : agents) {
 				a.getPath().clear();

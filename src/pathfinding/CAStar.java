@@ -98,7 +98,7 @@ public class CAStar implements SearchStrategy {
 				// reserved it for the next time step, to avoid a collision occurring on the next time step. We also skip a neighbour if
 				// another agent has reserved it for this time step (the step before the step where the collision we are trying to avoid
 				// would occur) to stop agents both moving towards each other at the same time from skipping through each other out to the
-				// other side, again not a perfect way to fix it but I didn't have time to come up with anything more clever.
+				// other side.
 				if (closed.contains(neighbour)
 						|| (resTable.containsKey(new SpacetimePoint(nx, ny, timestep + 1)) && !resTable.get(
 								new SpacetimePoint(nx, ny, timestep + 1)).equals(agent))
