@@ -4,42 +4,38 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import pathfinding.Agent;
-import pathfinding.RobotPlanning;
+import pathfinding.AgentPlanning;
 import pathfinding.data.Node;
 import pathfinding.data.SpacetimePoint;
 import pathfinding.data.WarehouseMap;
 import pathfinding.exception.InvalidCoordinateException;
 
 /**
- * Model part of MVC design which interfaces with the route planning classes and stores an ArrayList of 'Agents' which is my representation
- * of a robot including its position, stored path and priority (index)
+ * Model part of MVC design which interfaces with the route planning classes and stores an ArrayList of 'Agents' including its position, stored path and priority (index)
  * @author Sam
  */
 public class PathfindingModel extends Observable {
 	
-	private final RobotPlanning rp;
+	private final AgentPlanning rp;
 	private final WarehouseMap map;
-	private final int robotNumber;
-	// private int agentCount;
+	private final int agentNumber;
 	private ArrayList<Agent> agents;
 	private Agent focusedAgent;
 	
-	public PathfindingModel(RobotPlanning rp, WarehouseMap map, int robotNumber) {
-		this.rp = rp;
+	public PathfindingModel(AgentPlanning ap, WarehouseMap map, int agentNumber) {
+		this.rp = ap;
 		this.map = map;
-		this.robotNumber = robotNumber;
+		this.agentNumber = agentNumber;
 		
 		// Initialise Agents ArrayList
-		agents = new ArrayList<>(robotNumber);
+		agents = new ArrayList<>(agentNumber);
 		
 		// Add new Agents initially with null start and goal and then set the start along a line at the bottom of the map
-		// NOTE this is where it will likely throw my own InvalidCoordinateException if more than 6 robots are used
-		for (int i = 0; i < robotNumber; i++) {
+		for (int i = 0; i < agentNumber; i++) {
 			agents.add(new Agent(null, null, i));
 			Agent a = agents.get(i);
 			try {
 				a.setStart(map.nodeAt(i * 2, 0));
-				System.out.println("robot " + i + " at " + a.getStart());
 			} catch (InvalidCoordinateException e) {
 				System.err.println("Error placing agents on map");
 			}
@@ -75,11 +71,11 @@ public class PathfindingModel extends Observable {
 	}
 	
 	/**
-	 * Return the number of robots (agents) involved in the search
+	 * Return the number of agents involved in the search
 	 * @return Agent number
 	 */
-	public int getRobotNumber() {
-		return robotNumber;
+	public int getAgentNumber() {
+		return agentNumber;
 	}
 	
 	/**
@@ -103,18 +99,18 @@ public class PathfindingModel extends Observable {
 	}
 	
 	/**
-	 * Set the goal of the given robot if it's not already the goal of another robot and instruct GUI to update
+	 * Set the goal of the given agent if it's not already the goal of another agent and instruct GUI to update
 	 * @param a
-	 *            the robot
+	 *            the agent
 	 * @param goal
 	 *            the goal
 	 */
 	public void setGoal(Agent a, Node goal) {
 		boolean occupied = false;
 		
-		// Check that the proposed new goal isn't the goal of another robot
-		// or the current position of another robot that isn't going to move
-		// (you should be able to set a goal at the current position of a robot that IS going to move though)
+		// Check that the proposed new goal isn't the goal of another agent
+		// or the current position of another agent that isn't going to move
+		// (you should be able to set a goal at the current position of a agent that IS going to move though)
 		for (Agent oa : agents) {
 			if (oa != a && goal != null && (goal.equals(oa.getGoal()) || (oa.getGoal() == null && goal.equals(oa.getStart())))) {
 				occupied = true;
@@ -162,7 +158,7 @@ public class PathfindingModel extends Observable {
 	}
 	
 	/**
-	 * Start a new thread to animate the robots to their goals using the animateToGoalsThread method
+	 * Start a new thread to animate the agents to their goals using the animateToGoalsThread method
 	 */
 	public void animateToGoals() {
 		Thread t = new Thread(() -> animateToGoalsThread());
@@ -178,15 +174,15 @@ public class PathfindingModel extends Observable {
 		long lastTime = 0;
 		long currentTime = 0;
 		
-		// Check that at least one robot has a goal (otherwise there's no point executing this)
+		// Check that at least one agent has a goal (otherwise there's no point executing this)
 		if (oneHasGoal()) {
 			// Step number to know when to stop looping and to know what step of the route to execute
 			int stepNum = 0;
 			
-			// The longest path of any of the robots (we need to stop looping after this)
+			// The longest path of any of the agents (we need to stop looping after this)
 			int longestPath = longestPath();
 			
-			// Loop until all robots are at their goals
+			// Loop until all agents are at their goals
 			while (stepNum < longestPath) {
 				// Change the current time of this loop
 				currentTime = System.currentTimeMillis();
@@ -236,7 +232,7 @@ public class PathfindingModel extends Observable {
 	 *            the step number that we are on
 	 */
 	private void step(Agent a, int n) {
-		// The point we are stepping to from the path of the robot including the goal but not the start (getPathNoS)
+		// The point we are stepping to from the path of the agent including the goal but not the start (getPathNoS)
 		SpacetimePoint p = a.getPathNoS().get(n);
 		
 		// Create and find the node on the map where this point is and set the Agent's new position to it

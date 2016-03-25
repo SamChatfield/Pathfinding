@@ -6,17 +6,16 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
+import pathfinding.data.Node;
 import pathfinding.data.SpacetimePoint;
 import pathfinding.data.WarehouseMap;
 import pathfinding.exception.InvalidCoordinateException;
-import pathfinding.data.Node;
 
 /**
  * My implementation of Cooperative A* search using Manhattan distance as the heuristic and a hash table for the reservation table storing
  * points with a time dimension and the Agent that is there. The open set is implemented as a priority queue with the priority being the f
  * value of the search node (f(x) = g(x) + h(x) where h(x) is the heuristic value of x to the goal). The closed set is simply a hash set and
- * a hash table is used to store where each search node came from (i.e. which node led to it). As explained in MultiRobotPlanning ideally I
- * would've liked to first calculate the basic A* path and use that as a heuristic as well as for other things.
+ * a hash table is used to store where each search node came from (i.e. which node led to it).
  * @author Sam
  */
 public class CAStar implements SearchStrategy {
@@ -95,10 +94,10 @@ public class CAStar implements SearchStrategy {
 				int nx = neighbour.getX();
 				int ny = neighbour.getY();
 				
-				// In addition to skipping a neighbour if its already in the closed set, we also skip a neighbour if another robot has
+				// In addition to skipping a neighbour if its already in the closed set, we also skip a neighbour if another agent has
 				// reserved it for the next time step, to avoid a collision occurring on the next time step. We also skip a neighbour if
-				// another robot has reserved it for this time step (the step before the step where the collision we are trying to avoid
-				// would occur) to stop robots both moving towards each other at the same time from skipping through each other out to the
+				// another agent has reserved it for this time step (the step before the step where the collision we are trying to avoid
+				// would occur) to stop agents both moving towards each other at the same time from skipping through each other out to the
 				// other side, again not a perfect way to fix it but I didn't have time to come up with anything more clever.
 				if (closed.contains(neighbour)
 						|| (resTable.containsKey(new SpacetimePoint(nx, ny, timestep + 1)) && !resTable.get(
@@ -153,7 +152,7 @@ public class CAStar implements SearchStrategy {
 	}
 	
 	/**
-	 * Compute the current time step the robot would be at if it was on the current node, we do this by tracing back through the cameFrom
+	 * Compute the current time step the agent would be at if it was on the current node, we do this by tracing back through the cameFrom
 	 * table
 	 * @param current
 	 *            Node to get time step of

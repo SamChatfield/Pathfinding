@@ -7,9 +7,9 @@ import java.util.Hashtable;
 import java.util.PriorityQueue;
 import java.util.Set;
 
+import pathfinding.data.Node;
 import pathfinding.data.SpacetimePoint;
 import pathfinding.data.WarehouseMap;
-import pathfinding.data.Node;
 import pathfinding.exception.InvalidCoordinateException;
 
 /**
@@ -68,13 +68,8 @@ public class AStar implements SearchStrategy {
 		// Add the start node to the open queue
 		open.add(start);
 		
-		// System.out.println("A* progress:\n" + "_ = blank space\n" + "X = inner wall\n" + "@ = goal node (before it is in the frontier)\n"
-		// + "O = current node being considered\n" + "+ = nodes in the frontier\n" + ". = explored nodes:\n");
-		
 		// The main loop of the search, keep searching while the open set contains nodes
 		while (!open.isEmpty()) {
-			// printSearchMap(goal);
-			
 			// Take the front of the open queue
 			Node current = open.poll();
 			
@@ -111,8 +106,7 @@ public class AStar implements SearchStrategy {
 			}
 		}
 		// If this point is reached then the search has failed so return null. It's more likely, however, that even if search fails it won't
-		// reach this code because it'll get stuck in an infinite loop
-		// somewhere.
+		// reach this code because it'll get stuck in an infinite loop somewhere.
 		return null;
 	}
 	

@@ -7,11 +7,11 @@ import java.util.ArrayList;
 import pathfinding.data.WarehouseMap;
 
 /**
- * Class to perform route planning for a single robot within the warehouse. For now this returns a route in the form of a list of grid
+ * Class to perform route planning for a single agent within the warehouse. For now this returns a route in the form of a list of grid
  * poses. Subject to change based on requirements.
  * @author Sam
  */
-public class SingleRobotPlanning implements RobotPlanning {
+public class SingleAgentPlanning implements AgentPlanning {
 	
 	private WarehouseMap map;
 	
@@ -19,7 +19,7 @@ public class SingleRobotPlanning implements RobotPlanning {
 	 * Create a new instance of this route planning method on the given map data
 	 * @param map
 	 */
-	public SingleRobotPlanning(WarehouseMap map) {
+	public SingleAgentPlanning(WarehouseMap map) {
 		this.map = map;
 	}
 	

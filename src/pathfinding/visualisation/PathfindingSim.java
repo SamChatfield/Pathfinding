@@ -5,9 +5,9 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pathfinding.MultiRobotPlanning;
-import pathfinding.RobotPlanning;
-import pathfinding.SingleRobotPlanning;
+import pathfinding.MultiAgentPlanning;
+import pathfinding.AgentPlanning;
+import pathfinding.SingleAgentPlanning;
 import pathfinding.data.WarehouseMap;
 
 /**
@@ -24,22 +24,20 @@ public class PathfindingSim extends JPanel {
 		// Create the GridMap instance to use for the warehouse and pass into helper class 'MapData'
 		// to build search nodes and other search-related functionality
 		
-//		GridMap map = MapUtils.createMarkingWarehouseMap();
-//		MapData mapData = new MapData(map);
 		WarehouseMap map = new WarehouseMap();
 		
-		// NOTE number of robots must be manually set here as it stands
-		// Number of robots to use; 1 or more (only tested for up to 4 robots, should scale up to 6 though)
-		// beyond 6 robots exceptions will likely be thrown because robots will try and start outside the map
-		// other than this though it should theoretically work for more robots
-		int robotNumber = 3;
+		// NOTE number of agents must be manually set here as it stands
+		// Number of agents to use; 1 or more (only tested for up to 4 agents, should scale up to 6 though)
+		// beyond 6 agents exceptions will likely be thrown because agents will try and start outside the map
+		// other than this though it should theoretically work for more agents
+		int agentNumber = 3;
 		
-		// Choose which planning method to use based on the number of robots
+		// Choose which planning method to use based on the number of agents
 		// Single uses basic A*, multiple uses Cooperative A*, both with Manhattan distance as heuristic
-		RobotPlanning rp = robotNumber == 1 ? new SingleRobotPlanning(map) : new MultiRobotPlanning(map);
+		AgentPlanning ap = agentNumber == 1 ? new SingleAgentPlanning(map) : new MultiAgentPlanning(map);
 		
 		// Create model to interface with search classes and views to display information and map
-		PathfindingModel model = new PathfindingModel(rp, map, robotNumber);
+		PathfindingModel model = new PathfindingModel(ap, map, agentNumber);
 		MapView mapView = new MapView(model, map);
 		IntructionsView instructionsView = new IntructionsView();
 		ControlView controlView = new ControlView(model);

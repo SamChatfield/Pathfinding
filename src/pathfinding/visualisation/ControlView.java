@@ -13,7 +13,7 @@ import javax.swing.JRadioButton;
 import pathfinding.Agent;
 
 /**
- * The right-hand panel with the radio buttons to select the focused robot and the buttons to compute plan and move to goals
+ * The right-hand panel with the radio buttons to select the focused agent and the buttons to compute plan and move to goals
  * @author Sam
  */
 @SuppressWarnings("serial")
@@ -30,13 +30,13 @@ public class ControlView extends JPanel implements ActionListener {
 		super();
 		this.model = model;
 		
-		JLabel ins = new JLabel("<html><center>Select robot:&nbsp&nbsp<br></center></html>");
+		JLabel ins = new JLabel("<html><center>Select agent:&nbsp&nbsp<br></center></html>");
 		setLayout(new GridLayout(20, 1));
 		add(ins);
 		
-		JRadioButton[] rbs = new JRadioButton[model.getRobotNumber()];
+		JRadioButton[] rbs = new JRadioButton[model.getAgentNumber()];
 		ButtonGroup bg = new ButtonGroup();
-		for (int i = 0; i < model.getRobotNumber(); i++) {
+		for (int i = 0; i < model.getAgentNumber(); i++) {
 			rbs[i] = new JRadioButton("" + (i + 1));
 			rbs[i].setActionCommand("" + i);
 			bg.add(rbs[i]);
@@ -56,7 +56,7 @@ public class ControlView extends JPanel implements ActionListener {
 	}
 	
 	/**
-	 * Called when a radio button is clicked, set the focused robot to the one that was clicked
+	 * Called when a radio button is clicked, set the focused agent to the one that was clicked
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

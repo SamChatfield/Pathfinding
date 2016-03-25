@@ -2,8 +2,8 @@ package pathfinding;
 
 import java.util.ArrayList;
 
-import pathfinding.data.SpacetimePoint;
 import pathfinding.data.Node;
+import pathfinding.data.SpacetimePoint;
 
 /**
  * Abstract search strategy data type which will have implementations A* and Cooperative A*

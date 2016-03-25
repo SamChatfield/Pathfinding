@@ -7,7 +7,7 @@ import pathfinding.data.Node;
 import pathfinding.data.SpacetimePoint;
 
 /**
- * Representation of a robot with a start (current) node, goal node, priority (index) and a current path
+ * Representation of an agent with a start (current) node, goal node, priority (index) and a current path
  * @author Sam
  */
 public class Agent {
@@ -83,7 +83,7 @@ public class Agent {
 	}
 	
 	/**
-	 * Clear the robot's path
+	 * Clear the agent's path
 	 */
 	public void clearPath() {
 		path.clear();

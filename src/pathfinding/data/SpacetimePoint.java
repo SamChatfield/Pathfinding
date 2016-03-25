@@ -1,8 +1,8 @@
 package pathfinding.data;
 
 /**
- * A point with two spatial dimensions and one temporal dimension. Used for paths in multiple robot planning to indicate the time at which a
- * robot is at a given point for reservations etc.
+ * A point with two spatial dimensions and one temporal dimension. Used for paths in multiple agent planning to indicate the time at which an
+ * agent is at a given point for reservations etc.
  * @author Sam
  */
 public class SpacetimePoint {

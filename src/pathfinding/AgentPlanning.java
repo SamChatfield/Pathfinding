@@ -3,10 +3,10 @@ package pathfinding;
 import java.util.ArrayList;
 
 /**
- * Abstract route planning type which has instances SingleRobotPlanning and MultiRobotPlanning
+ * Abstract route planning type which has instances SingleAgentPlanning and MultiAgentPlanning
  * @author Sam
  */
-public interface RobotPlanning {
+public interface AgentPlanning {
 	
 	/**
 	 * Compute the whole plan of all of the Agents' movement from their current positions to their goals (the ArrayList will be modified in

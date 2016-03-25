@@ -63,8 +63,8 @@ public class MapView extends JPanel implements Observer {
 				if (!model.getMap().isValidNode(x, y))
 					return;
 				
-				// If it was a valid mouse click then if the focused robot either doesn't have a goal or does have a goal but the click
-				// isn't on it's start node or goal node then set the robot's goal to this new node where the click occurred
+				// If it was a valid mouse click then if the focused agent either doesn't have a goal or does have a goal but the click
+				// isn't on it's start node or goal node then set the agent's goal to this new node where the click occurred
 				Agent a = model.getFocusedAgent();
 				Node aStart = a.getStart();
 				Node aGoal = a.getGoal();
@@ -206,7 +206,7 @@ public class MapView extends JPanel implements Observer {
 		g2d.drawString("" + (fa.getIndex() + 1), (int) (rx(fa) * sf) - 3, screenY(ry(fa)) + 5);
 		g2d.drawString("" + (fa.getIndex() + 1), (int) (gx(fa) * sf) - 3, screenY(gy(fa)) + 5);
 		
-		// Finally, draw the Robots' starts and goals
+		// Finally, draw the agents' starts and goals
 		for (Agent a : model.getAgents()) {
 			int d = 20;
 			Node goal = a.getGoal();
