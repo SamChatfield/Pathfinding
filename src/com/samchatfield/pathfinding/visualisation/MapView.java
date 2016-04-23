@@ -1,4 +1,4 @@
-package pathfinding.visualisation;
+package com.samchatfield.pathfinding.visualisation;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,11 +13,11 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import pathfinding.Agent;
-import pathfinding.data.Node;
-import pathfinding.data.SpacetimePoint;
-import pathfinding.data.WarehouseMap;
-import pathfinding.exception.InvalidCoordinateException;
+import com.samchatfield.pathfinding.Agent;
+import com.samchatfield.pathfinding.data.Node;
+import com.samchatfield.pathfinding.data.SpacetimePoint;
+import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
  * The view for the GUI representation of the warehouse map This code is not the most optimal GUI code in the world since it redraws things

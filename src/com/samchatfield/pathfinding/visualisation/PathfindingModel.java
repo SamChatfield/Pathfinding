@@ -1,14 +1,14 @@
-package pathfinding.visualisation;
+package com.samchatfield.pathfinding.visualisation;
 
 import java.util.ArrayList;
 import java.util.Observable;
 
-import pathfinding.Agent;
-import pathfinding.AgentPlanning;
-import pathfinding.data.Node;
-import pathfinding.data.SpacetimePoint;
-import pathfinding.data.WarehouseMap;
-import pathfinding.exception.InvalidCoordinateException;
+import com.samchatfield.pathfinding.Agent;
+import com.samchatfield.pathfinding.AgentPlanning;
+import com.samchatfield.pathfinding.data.Node;
+import com.samchatfield.pathfinding.data.SpacetimePoint;
+import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
  * Model part of MVC design which interfaces with the route planning classes and stores an ArrayList of 'Agents' including its position, stored path and priority (index)

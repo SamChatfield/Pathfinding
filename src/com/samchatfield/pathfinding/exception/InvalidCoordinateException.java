@@ -1,4 +1,4 @@
-package pathfinding.exception;
+package com.samchatfield.pathfinding.exception;
 
 @SuppressWarnings("serial")
 public class InvalidCoordinateException extends Exception {

@@ -1,4 +1,4 @@
-package pathfinding;
+package com.samchatfield.pathfinding;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,10 +7,10 @@ import java.util.Hashtable;
 import java.util.PriorityQueue;
 import java.util.Set;
 
-import pathfinding.data.Node;
-import pathfinding.data.SpacetimePoint;
-import pathfinding.data.WarehouseMap;
-import pathfinding.exception.InvalidCoordinateException;
+import com.samchatfield.pathfinding.data.Node;
+import com.samchatfield.pathfinding.data.SpacetimePoint;
+import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
  * My implementation of A* search using Manhattan distance as the heuristic. The open set is implemented as a priority queue with the

@@ -1,4 +1,4 @@
-package pathfinding.data;
+package com.samchatfield.pathfinding.data;
 
 import java.util.ArrayList;
 

@@ -1,14 +1,14 @@
-package pathfinding.visualisation;
+package com.samchatfield.pathfinding.visualisation;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import pathfinding.MultiAgentPlanning;
-import pathfinding.AgentPlanning;
-import pathfinding.SingleAgentPlanning;
-import pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.AgentPlanning;
+import com.samchatfield.pathfinding.MultiAgentPlanning;
+import com.samchatfield.pathfinding.SingleAgentPlanning;
+import com.samchatfield.pathfinding.data.WarehouseMap;
 
 /**
  * Main class to launch the GUI visualisation of route planning. GUI build using MVC design paradigm (not conventionally perfect I concede)

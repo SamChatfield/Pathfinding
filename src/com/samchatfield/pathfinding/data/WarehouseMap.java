@@ -1,4 +1,4 @@
-package pathfinding.data;
+package com.samchatfield.pathfinding.data;
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-import pathfinding.exception.InvalidCoordinateException;
+import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
  * Code representation of the warehouse.

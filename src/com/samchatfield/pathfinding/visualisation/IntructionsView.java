@@ -1,4 +1,4 @@
-package pathfinding.visualisation;
+package com.samchatfield.pathfinding.visualisation;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;

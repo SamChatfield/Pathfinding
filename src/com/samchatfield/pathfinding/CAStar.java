@@ -1,4 +1,4 @@
-package pathfinding;
+package com.samchatfield.pathfinding;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,10 +6,10 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.PriorityQueue;
 
-import pathfinding.data.Node;
-import pathfinding.data.SpacetimePoint;
-import pathfinding.data.WarehouseMap;
-import pathfinding.exception.InvalidCoordinateException;
+import com.samchatfield.pathfinding.data.Node;
+import com.samchatfield.pathfinding.data.SpacetimePoint;
+import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
  * My implementation of Cooperative A* search using Manhattan distance as the heuristic and a hash table for the reservation table storing

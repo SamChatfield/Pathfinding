@@ -1,10 +1,10 @@
-package pathfinding;
+package com.samchatfield.pathfinding;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 
-import pathfinding.data.SpacetimePoint;
-import pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.SpacetimePoint;
+import com.samchatfield.pathfinding.data.WarehouseMap;
 
 /**
  * Route planning method for multiple agents using Cooperative A* with the reservation table implemented as a hash table of points (with

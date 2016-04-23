@@ -1,4 +1,4 @@
-package pathfinding.data;
+package com.samchatfield.pathfinding.data;
 
 /**
  * A point with two spatial dimensions and one temporal dimension. Used for paths in multiple agent planning to indicate the time at which an

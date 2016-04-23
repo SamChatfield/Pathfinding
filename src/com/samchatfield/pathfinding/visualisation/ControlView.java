@@ -1,4 +1,4 @@
-package pathfinding.visualisation;
+package com.samchatfield.pathfinding.visualisation;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import pathfinding.Agent;
+import com.samchatfield.pathfinding.Agent;
 
 /**
  * The right-hand panel with the radio buttons to select the focused agent and the buttons to compute plan and move to goals

@@ -1,10 +1,10 @@
-package pathfinding;
+package com.samchatfield.pathfinding;
 
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.WarehouseMap;
 
 /**
  * Class to perform route planning for a single agent within the warehouse. For now this returns a route in the form of a list of grid

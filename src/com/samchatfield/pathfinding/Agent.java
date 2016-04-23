@@ -1,10 +1,10 @@
-package pathfinding;
+package com.samchatfield.pathfinding;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import pathfinding.data.Node;
-import pathfinding.data.SpacetimePoint;
+import com.samchatfield.pathfinding.data.Node;
+import com.samchatfield.pathfinding.data.SpacetimePoint;
 
 /**
  * Representation of an agent with a start (current) node, goal node, priority (index) and a current path

@@ -1,9 +1,9 @@
-package pathfinding;
+package com.samchatfield.pathfinding;
 
 import java.util.ArrayList;
 
-import pathfinding.data.Node;
-import pathfinding.data.SpacetimePoint;
+import com.samchatfield.pathfinding.data.Node;
+import com.samchatfield.pathfinding.data.SpacetimePoint;
 
 /**
  * Abstract search strategy data type which will have implementations A* and Cooperative A*
