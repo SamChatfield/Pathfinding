@@ -8,7 +8,7 @@ import java.util.PriorityQueue;
 
 import com.samchatfield.pathfinding.data.Node;
 import com.samchatfield.pathfinding.data.SpacetimePoint;
-import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.WorldMap;
 import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
@@ -20,7 +20,7 @@ import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
  */
 public class CAStar implements SearchStrategy {
 	
-	private final WarehouseMap map;
+	private final WorldMap map;
 	private final Agent agent;
 	private Hashtable<Node, Node> cameFrom;
 	private HashSet<Node> closed;
@@ -37,7 +37,7 @@ public class CAStar implements SearchStrategy {
 	 * @param resTable
 	 *            reservation table
 	 */
-	public CAStar(WarehouseMap map, Agent agent, Hashtable<SpacetimePoint, Agent> resTable) {
+	public CAStar(WorldMap map, Agent agent, Hashtable<SpacetimePoint, Agent> resTable) {
 		this.map = map;
 		this.agent = agent;
 		this.resTable = resTable;
@@ -72,7 +72,7 @@ public class CAStar implements SearchStrategy {
 		for (Node n : map.getNodes()) {
 			n.setF((int) Double.POSITIVE_INFINITY);
 		}
-		start.setF(WarehouseMap.mDist(start, goal));
+		start.setF(WorldMap.mDist(start, goal));
 		
 		open.add(start);
 		
@@ -113,7 +113,7 @@ public class CAStar implements SearchStrategy {
 					continue;
 				} else if (!open.contains(neighbour)) {
 					neighbour.setG(tentativeG);
-					neighbour.setF(neighbour.getG() + WarehouseMap.mDist(neighbour, goal));
+					neighbour.setF(neighbour.getG() + WorldMap.mDist(neighbour, goal));
 					cameFrom.put(neighbour, current);
 					open.add(neighbour);
 					somethingAdded = true;
@@ -125,7 +125,7 @@ public class CAStar implements SearchStrategy {
 			if (!somethingAdded) {
 				Node wait = new Node(current.getX(), current.getY(), false, current.getNeighbours(), true);
 				wait.setG(current.getG() + 1);
-				wait.setF(wait.getG() + WarehouseMap.mDist(wait, goal));
+				wait.setF(wait.getG() + WorldMap.mDist(wait, goal));
 				open.add(wait);
 				cameFrom.put(wait, current);
 			}

@@ -4,7 +4,7 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
-import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.WorldMap;
 
 /**
  * Class to perform route planning for a single agent within the warehouse. For now this returns a route in the form of a list of grid
@@ -13,13 +13,13 @@ import com.samchatfield.pathfinding.data.WarehouseMap;
  */
 public class SingleAgentPlanning implements AgentPlanning {
 	
-	private WarehouseMap map;
+	private WorldMap map;
 	
 	/**
 	 * Create a new instance of this route planning method on the given map data
 	 * @param map
 	 */
-	public SingleAgentPlanning(WarehouseMap map) {
+	public SingleAgentPlanning(WorldMap map) {
 		this.map = map;
 	}
 	

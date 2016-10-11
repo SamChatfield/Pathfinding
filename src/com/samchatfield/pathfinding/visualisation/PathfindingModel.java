@@ -7,7 +7,7 @@ import com.samchatfield.pathfinding.Agent;
 import com.samchatfield.pathfinding.AgentPlanning;
 import com.samchatfield.pathfinding.data.Node;
 import com.samchatfield.pathfinding.data.SpacetimePoint;
-import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.WorldMap;
 import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
@@ -17,12 +17,12 @@ import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 public class PathfindingModel extends Observable {
 	
 	private final AgentPlanning rp;
-	private final WarehouseMap map;
+	private final WorldMap map;
 	private final int agentNumber;
 	private ArrayList<Agent> agents;
 	private Agent focusedAgent;
 	
-	public PathfindingModel(AgentPlanning ap, WarehouseMap map, int agentNumber) {
+	public PathfindingModel(AgentPlanning ap, WorldMap map, int agentNumber) {
 		this.rp = ap;
 		this.map = map;
 		this.agentNumber = agentNumber;
@@ -67,7 +67,7 @@ public class PathfindingModel extends Observable {
 	 * Return the map representation
 	 * @return map
 	 */
-	public WarehouseMap getMap() {
+	public WorldMap getMap() {
 		return map;
 	}
 	

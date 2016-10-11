@@ -16,7 +16,7 @@ import javax.swing.JPanel;
 import com.samchatfield.pathfinding.Agent;
 import com.samchatfield.pathfinding.data.Node;
 import com.samchatfield.pathfinding.data.SpacetimePoint;
-import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.WorldMap;
 import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
@@ -28,7 +28,7 @@ import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 public class MapView extends JPanel implements Observer {
 	
 	private final PathfindingModel model;
-	private final WarehouseMap map;
+	private final WorldMap map;
 	private Point2D topLeft, botLeft, topRight, botRight;
 	private ArrayList<Point2D> nodes;
 	private double sf;
@@ -41,7 +41,7 @@ public class MapView extends JPanel implements Observer {
 	 * @param map
 	 *            map representation data
 	 */
-	public MapView(PathfindingModel model, WarehouseMap map) {
+	public MapView(PathfindingModel model, WorldMap map) {
 		this.model = model;
 		this.map = map;
 		nodes = new ArrayList<>(map.getNodes().size());

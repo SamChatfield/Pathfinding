@@ -9,34 +9,27 @@ import java.util.Set;
 import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
- * Code representation of the warehouse.
- * NOTE: (0,0) is the bottom left of the map as seen in ExampleGridMover
+ * Code representation of the map.
+ * NOTE: (0,0) is the bottom left of the map.
  * @author Sam
  */
-public class WarehouseMap {
+public class WorldMap {
 	
 	private final int width = 12;
 	private final int height = 8;
 	private ArrayList<Node> nodes;
 	
-//	private final Set<Integer> obstacleX, obstacleY;
 	private final Set<Point> obs;
 	
 	
 	/**
 	 * Create new map object
 	 */
-	public WarehouseMap() {
-//		Integer[] ox = { 2, 5, 6, 9 };
-//		obstacleX = new HashSet<>(Arrays.asList(ox));
-//		
-//		Integer[] oy = { 2, 3, 4, 5 };
-//		obstacleY = new HashSet<>(Arrays.asList(oy));
-		
-		Point[] os = { new Point(2, 2), new Point(2, 3), new Point(2, 4), new Point(2, 5),
+	public WorldMap() {
+		Point[] obstacles = { new Point(2, 2), new Point(2, 3), new Point(2, 4), new Point(2, 5),
 				new Point(5, 3), new Point(5, 4), new Point(6, 3), new Point(6, 4),
 				new Point(9, 2), new Point(9, 3), new Point(9, 4), new Point(9, 5)};
-		obs = new HashSet<>(Arrays.asList(os));
+		obs = new HashSet<>(Arrays.asList(obstacles));
 		
 		nodes = createNodes();
 		addAdjacencies(nodes);
@@ -52,12 +45,10 @@ public class WarehouseMap {
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
 				boolean obstacle = false;
-//				if ((y >= 1 && y <= 5) && (x == 1 || x == 4 || x == 7 || x == 10)) {
 				System.out.println();
 				if (obs.contains(new Point(x, y))) {
 					obstacle = true;
 				}
-//				System.out.println("Added node: (" + x + "," + y + ") and obstacle = " + obstacle);
 				list.add(new Node(x, y, obstacle, new ArrayList<>()));
 			}
 		}
@@ -78,14 +69,14 @@ public class WarehouseMap {
 			int y = i / 12;
 			
 			Node up, down, left, right;
-			try { up = nodeAt(x, y + 1); } catch (InvalidCoordinateException e) { up = null; }
-			try { down = nodeAt(x, y - 1); } catch (InvalidCoordinateException e) { down = null; }
-			try { left = nodeAt(x - 1, y); } catch (InvalidCoordinateException e) { left = null; }
+			try { up = nodeAt(x, y + 1); }    catch (InvalidCoordinateException e) { up = null; }
+			try { down = nodeAt(x, y - 1); }  catch (InvalidCoordinateException e) { down = null; }
+			try { left = nodeAt(x - 1, y); }  catch (InvalidCoordinateException e) { left = null; }
 			try { right = nodeAt(x + 1, y); } catch (InvalidCoordinateException e) { right = null; }
 			
-			if (up != null && !up.isObstacle()) { adj.add(up); }
-			if (down != null && !down.isObstacle()) { adj.add(down); }
-			if (left != null && !left.isObstacle()) { adj.add(left); }
+			if (up != null && !up.isObstacle())       { adj.add(up); }
+			if (down != null && !down.isObstacle())   { adj.add(down); }
+			if (left != null && !left.isObstacle())   { adj.add(left); }
 			if (right != null && !right.isObstacle()) { adj.add(right); }
 		}
 	}
@@ -147,6 +138,7 @@ public class WarehouseMap {
 		return nodes;
 	}
 	
+	@Override
 	public String toString() {
 		String out = "";
 		
@@ -159,7 +151,7 @@ public class WarehouseMap {
 						out += " _";
 					}
 				} catch (InvalidCoordinateException e) {
-					// Unreachable due to limits of the for loop
+					// Unreachable for a valid width due to limits of the for loop
 					e.printStackTrace();
 				}
 			}

@@ -49,7 +49,7 @@ public class Agent {
 	}
 	
 	/**
-	 * Return the path without the start and goal for drawing purposes in MapView
+	 * Return the path without the start and goal for route drawing purposes in MapView
 	 * @return path without start or goal node
 	 */
 	public ArrayList<SpacetimePoint> getPathNoSG() {

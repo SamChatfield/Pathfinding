@@ -9,7 +9,7 @@ import java.util.Set;
 
 import com.samchatfield.pathfinding.data.Node;
 import com.samchatfield.pathfinding.data.SpacetimePoint;
-import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.WorldMap;
 import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
 
 /**
@@ -20,7 +20,7 @@ import com.samchatfield.pathfinding.exception.InvalidCoordinateException;
  */
 public class AStar implements SearchStrategy {
 	
-	private WarehouseMap map;
+	private WorldMap map;
 	private Hashtable<Node, Node> cameFrom;
 	private Set<Node> closed;
 	private PriorityQueue<Node> open;
@@ -30,7 +30,7 @@ public class AStar implements SearchStrategy {
 	 * (queue) to the f value.
 	 * @param map
 	 */
-	public AStar(WarehouseMap map) {
+	public AStar(WorldMap map) {
 		this.map = map;
 		cameFrom = new Hashtable<>();
 		closed = new HashSet<>();
@@ -63,7 +63,7 @@ public class AStar implements SearchStrategy {
 		for (Node n : map.getNodes()) {
 			n.setF((int) Double.POSITIVE_INFINITY);
 		}
-		start.setF(WarehouseMap.mDist(start, goal));
+		start.setF(WorldMap.mDist(start, goal));
 		
 		// Add the start node to the open queue
 		open.add(start);
@@ -99,14 +99,13 @@ public class AStar implements SearchStrategy {
 				// the relevant entry in the cameFrom table
 				else if (!open.contains(neighbour)) {
 					neighbour.setG(tentativeG);
-					neighbour.setF(neighbour.getG() + WarehouseMap.mDist(neighbour, goal));
+					neighbour.setF(neighbour.getG() + WorldMap.mDist(neighbour, goal));
 					cameFrom.put(neighbour, current);
 					open.add(neighbour);
 				}
 			}
 		}
-		// If this point is reached then the search has failed so return null. It's more likely, however, that even if search fails it won't
-		// reach this code because it'll get stuck in an infinite loop somewhere.
+		// If this point is reached then the search has failed so return null
 		return null;
 	}
 	

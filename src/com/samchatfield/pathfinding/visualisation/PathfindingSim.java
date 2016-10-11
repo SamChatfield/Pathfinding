@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import com.samchatfield.pathfinding.AgentPlanning;
 import com.samchatfield.pathfinding.MultiAgentPlanning;
 import com.samchatfield.pathfinding.SingleAgentPlanning;
-import com.samchatfield.pathfinding.data.WarehouseMap;
+import com.samchatfield.pathfinding.data.WorldMap;
 
 /**
  * Main class to launch the GUI visualisation of route planning. GUI build using MVC design paradigm (not conventionally perfect I concede)
@@ -24,7 +24,7 @@ public class PathfindingSim extends JPanel {
 		// Create the GridMap instance to use for the warehouse and pass into helper class 'MapData'
 		// to build search nodes and other search-related functionality
 		
-		WarehouseMap map = new WarehouseMap();
+		WorldMap map = new WorldMap();
 		
 		// NOTE number of agents must be manually set here as it stands
 		// Number of agents to use; 1 or more (only tested for up to 4 agents, should scale up to 6 though)
