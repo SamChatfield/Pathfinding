@@ -21,11 +21,13 @@ public class PathfindingModel extends Observable {
 	private final int agentNumber;
 	private ArrayList<Agent> agents;
 	private Agent focusedAgent;
+	private boolean agentsMoving;
 	
 	public PathfindingModel(AgentPlanning ap, WorldMap map, int agentNumber) {
 		this.rp = ap;
 		this.map = map;
 		this.agentNumber = agentNumber;
+		agentsMoving = false;
 		
 		// Initialise Agents ArrayList
 		agents = new ArrayList<>(agentNumber);
@@ -88,6 +90,14 @@ public class PathfindingModel extends Observable {
 	}
 	
 	/**
+	 * Return whether there are agents moving in the simulator
+	 * @return Agents moving
+	 */
+	public boolean agentsMoving() {
+		return agentsMoving;
+	}
+	
+	/**
 	 * Change the Agent that has focus and instruct the GUI to update accordingly
 	 * @param focusedAgent
 	 *            new Agent to give focus to
@@ -128,7 +138,7 @@ public class PathfindingModel extends Observable {
 	}
 	
 	/**
-	 * Move one Agent to its goal (not in use anymore)
+	 * Move one Agent to its goal
 	 * @param a
 	 *            Agent to move
 	 */
@@ -175,6 +185,11 @@ public class PathfindingModel extends Observable {
 		long lastTime = 0;
 		long currentTime = 0;
 		
+		// Let the buttons know that a route is in progress so they can disable themselves
+		agentsMoving = true;
+		setChanged();
+		notifyObservers();
+		
 		// Check that at least one agent has a goal (otherwise there's no point executing this)
 		if (oneHasGoal()) {
 			// Step number to know when to stop looping and to know what step of the route to execute
@@ -209,6 +224,10 @@ public class PathfindingModel extends Observable {
 				a.getPath().clear();
 				setGoal(a, null);
 			}
+			// Tell the buttons they can enable themselves again
+			agentsMoving = false;
+			setChanged();
+			notifyObservers();
 		}
 	}
 	
@@ -261,7 +280,6 @@ public class PathfindingModel extends Observable {
 			if (al > l)
 				l = al;
 		}
-		System.out.println("long " + l);
 		return l;
 	}
 	

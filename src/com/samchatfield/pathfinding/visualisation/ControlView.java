@@ -3,6 +3,8 @@ package com.samchatfield.pathfinding.visualisation;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -17,9 +19,10 @@ import com.samchatfield.pathfinding.Agent;
  * @author Sam
  */
 @SuppressWarnings("serial")
-public class ControlView extends JPanel implements ActionListener {
+public class ControlView extends JPanel implements ActionListener, Observer {
 	
 	private final PathfindingModel model;
+	private JButton compute, move;
 	
 	/**
 	 * Create a new instance adding instructions, radio buttons and buttons all in a grid layout of 20 rows to keep the buttons from being
@@ -45,10 +48,10 @@ public class ControlView extends JPanel implements ActionListener {
 		}
 		rbs[model.getFocusedAgent().getIndex()].setSelected(true);
 		
-		JButton compute = new JButton("Compute");
+		compute = new JButton("Compute");
 		compute.addActionListener(e -> model.computePaths());
 		
-		JButton move = new JButton("Move");
+		move = new JButton("Move");
 		move.addActionListener(e -> model.animateToGoals());
 		
 		add(compute);
@@ -63,6 +66,20 @@ public class ControlView extends JPanel implements ActionListener {
 		int clicked = Integer.parseInt(e.getActionCommand());
 		Agent a = model.getAgents().get(clicked);
 		model.setFocusedAgent(a);
+	}
+
+	/**
+	 * Called when agents have started or finished executing their current path to change the state of the buttons
+	 */
+	@Override
+	public void update(Observable o, Object arg) {
+		if (model.agentsMoving()) {
+			compute.setEnabled(false);
+			move.setEnabled(false);
+		} else {
+			compute.setEnabled(true);
+			move.setEnabled(true);
+		}
 	}
 	
 }

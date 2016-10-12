@@ -43,6 +43,7 @@ public class PathfindingSim extends JPanel {
 		ControlView controlView = new ControlView(model);
 		
 		model.addObserver(mapView);
+		model.addObserver(controlView);
 		
 		add(mapView, BorderLayout.CENTER);
 		add(instructionsView, BorderLayout.NORTH);
